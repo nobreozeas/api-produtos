@@ -1,0 +1,199 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Produtos",
+        "description": "Documentação da API para salvar categorias, locais e produtos",
+        "version": "1.0.0",
+        "contact": {
+            "name": "Seu Nome",
+            "email": "email@exemplo.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "paths": {
+        "/categories": {
+            "get": {
+                "summary": "Retorna todas as categorias",
+                "tags": [
+                    "Categorias"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de categorias",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Category"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/add": {
+            "post": {
+                "summary": "Cria uma nova categoria",
+                "tags": [
+                    "Categorias"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Category"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Categoria criada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Category"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar a categoria"
+                    }
+                }
+            }
+        },
+        "/locations": {
+            "get": {
+                "summary": "Retorna todos os locais",
+                "tags": [
+                    "Locais"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de locais",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Location"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cria um novo local",
+                "tags": [
+                    "Locais"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Location"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Local criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Location"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar o local"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Category": {
+                "type": "object",
+                "required": [
+                    "nome"
+                ],
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "description": "Nome da categoria"
+                    }
+                },
+                "example": {
+                    "nome": "Eletrônicos"
+                }
+            },
+            "Location": {
+                "type": "object",
+                "required": [
+                    "nome",
+                    "cep",
+                    "logradouro",
+                    "numero",
+                    "bairro",
+                    "cidade",
+                    "estado"
+                ],
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "description": "Nome do local"
+                    },
+                    "cep": {
+                        "type": "string",
+                        "description": "CEP do local"
+                    },
+                    "logradouro": {
+                        "type": "string",
+                        "description": "Logradouro do local"
+                    },
+                    "numero": {
+                        "type": "string",
+                        "description": "Número do local"
+                    },
+                    "bairro": {
+                        "type": "string",
+                        "description": "Bairro do local"
+                    },
+                    "cidade": {
+                        "type": "string",
+                        "description": "Cidade do local"
+                    },
+                    "estado": {
+                        "type": "string",
+                        "description": "Estado do local"
+                    }
+                },
+                "example": {
+                    "nome": "Armazém Central",
+                    "cep": "12345-678",
+                    "logradouro": "Rua das Flores",
+                    "numero": "123",
+                    "bairro": "Centro",
+                    "cidade": "São Paulo",
+                    "estado": "SP"
+                }
+            }
+        }
+    }
+}
