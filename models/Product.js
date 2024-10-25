@@ -23,11 +23,27 @@ const Product = sequelize.define('Product', {
     usuario: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    CategoryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Category,
+            key: 'id'
+        }
+    },
+    LocationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Location,
+            key: 'id'
+        }
     }
 });
 
-Product.belongsTo(Category);
-Product.belongsTo(Location);
+Product.belongsTo(Category, { foreignKey: 'CategoryId' });
+Product.belongsTo(Location, { foreignKey: 'LocationId' });
 
 module.exports = Product;
 
