@@ -1,9 +1,3 @@
-
-# Nome do Projeto
-
-## Descrição
-Breve descrição do projeto. Explique o objetivo e o que ele faz.
-
 ## Pré-requisitos
 
 Para rodar o projeto, você precisará:
